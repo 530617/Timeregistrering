@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 
-public class MySQLiteHelper extends SQLiteOpenHelper {
+public class ProjectDBTable extends SQLiteOpenHelper {
     //Databasespesifikt:
     private static final String DATABASE_NAME = "projects.db";
     private static final int DATABASE_VERSION = 1;
@@ -22,7 +22,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + " text not null, " + KEY_DETAILS + " text, " + KEY_TIME
             + " text" + ");";
     //Konstruktør;
-    public MySQLiteHelper(Context context) {
+    public ProjectDBTable(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
     // Kalles når databasen ikke eksisterer og må opprettes
@@ -30,6 +30,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DATABASE_CREATE);
     }
+
     // Kalles ved behov for oppgradering, dvs. mismatch mellom ny og
     // gammel versjon
     @Override
