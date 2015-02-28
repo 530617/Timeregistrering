@@ -1,11 +1,11 @@
 package no.hin.student.timeregistrering;
 
-public class TimeTable {
+public class Time {
     private long id;
     private String name;
     private String details;
 
-    public TimeTable(String name, String details) {
+    public Time(String name, String details) {
         super();
         this.name = name;
         this.details = details;
