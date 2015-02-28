@@ -7,11 +7,13 @@ import android.view.MenuItem;
 
 
 public class MainActivity extends Activity {
+    public String test = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        test = "a";
     }
 
 
@@ -20,6 +22,7 @@ public class MainActivity extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+
     }
 
     @Override
