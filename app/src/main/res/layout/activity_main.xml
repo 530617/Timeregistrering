@@ -1,11 +1,92 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:weightSum="1">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true">
+        <TableRow
+            android:layout_height="100dp"
+            android:background="#c30080b8"
+            android:layout_width="match_parent">
 
-</RelativeLayout>
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TableRow android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text= "Timeregistrering"
+                        android:textSize="25dp"
+                        android:layout_weight="1"
+                        android:textColor="#FFFFFF"
+                        android:gravity="left"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
+                        android:padding="5dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_span="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+                <TableRow android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text= "Klikk på et prosjekt i listen under for å starte timeregistrering."
+                        android:textSize="14dp"
+                        android:layout_weight="1"
+                        android:padding="5dp"
+                        android:textColor="#FFFFFF"
+                        android:gravity="left"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_span="1"/>
+                </TableRow>
+
+
+            </TableLayout>
+        </TableRow>
+    </TableLayout>
+
+
+    <fragment
+        android:layout_width="fill_parent"
+        android:layout_height="180dp"
+        android:background="#ffffff"
+        android:name="no.hin.student.timeregistrering.ListFragment"
+        android:id="@+id/fragment_list"
+        android:padding="10dp"
+        tools:layout="@layout/fragment_list" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="#c30080b8" />
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#ffffff"
+        android:id="@+id/fragment_container"
+        android:padding="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        />
+
+</LinearLayout>
