@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="horizontal"
+    android:background="#ffffff"
+    android:weightSum="1">
+
+
+
+    <fragment
+        android:layout_width="250dp"
+        android:layout_height="fill_parent"
+        android:name="no.hin.student.timeregistrering.ListFragment"
+        android:background="#ffffff"
+        android:id="@+id/fragment_list"
+        tools:layout="@layout/fragment_list" />
+
+    <View
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="#c30080b8" />
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#ffffff"
+        android:id="@+id/fragment_container"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        />
+
+</LinearLayout>
