@@ -82,6 +82,7 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
         super.onStart();
 
         getFragmentReferences();
+        projectFragment.displayProject(projects.get(0)); // Sett default prosjekt i project-fragment
     }
 
     @Override
