@@ -12,15 +12,16 @@
         android:id="@+id/textViewProsjektnavn"
         android:layout_gravity="center_horizontal"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_marginLeft="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Kode:"
-        android:id="@+id/textViewProsjektkode"
-        android:layout_marginTop="25dp"
+        android:id="@+id/textViewProsjektkodeLabel"
+        android:layout_below="@+id/textViewProsjektnavn"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="10dp"/>
 
     <TextView
@@ -28,13 +29,68 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Status:"
-        android:id="@+id/textViewProsjektstatus"/>
+        android:id="@+id/textViewProsjektstatusLabel"
+        android:layout_below="@+id/textViewProsjektkodeLabel"
+        android:layout_alignStart="@+id/textViewProsjektkodeLabel"
+        android:layout_marginTop="15dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Leder:"
+        android:id="@+id/textViewProsjektlederLabel"
+        android:layout_below="@id/textViewProsjektstatusLabel"
+        android:layout_alignStart="@id/textViewProsjektstatusLabel"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="P3005test"
+        android:id="@+id/textViewProsjektkode"
+        android:layout_toEndOf="@+id/textViewProsjektstatusLabel"
+        android:layout_alignBottom="@+id/textViewProsjektkodeLabel"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="25dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Påbegynt"
+        android:id="@+id/textViewProsjektstatus"
+        android:layout_alignBottom="@+id/textViewProsjektstatusLabel"
+        android:layout_alignStart="@+id/textViewProsjektkode"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Leif-Leif Leifsen"
         android:id="@+id/textViewProsjektleder"
-        android:layout_centerVertical="true"/>
+        android:layout_alignBottom="@+id/textViewProsjektlederLabel"
+        android:layout_alignStart="@+id/textViewProsjektstatus"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="00:00"
+        android:id="@+id/textViewTimeregKlokke"
+        android:layout_below="@+id/textViewProsjektleder"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="80sp"/>
+
+    <Button
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        android:id="@+id/button"
+        android:layout_alignTop="@+id/textViewTimeregKlokke"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="30dp"/>
 </RelativeLayout>
