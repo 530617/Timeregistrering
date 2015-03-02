@@ -17,9 +17,11 @@ public class SecondsUpdateReceiver extends BroadcastReceiver
     @Override
     public void onReceive(Context context, Intent intent)
     {
+        int elapsedSeconds = intent.getIntExtra("elapsedSeconds", 0);
+
         MainActivity activity = (MainActivity)context;
         FragmentManager manager = activity.getFragmentManager();
         ProjectFragment projectFragment = (ProjectFragment)manager.findFragmentById(R.id.fragment_project);
-        projectFragment.onSecondsUpdate();
+        projectFragment.onSecondsUpdate(elapsedSeconds);
     }
 }

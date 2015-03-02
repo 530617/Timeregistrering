@@ -51,10 +51,12 @@ public class Timeregistrering
         @Override
         public void run()
         {
+            int elapsedSeconds = 0;
             while (isRunning)
             {
                 tid.sleepMilliseconds(1000);
-                timerListener.onSecondsUpdate();
+                elapsedSeconds++;
+                timerListener.onSecondsUpdate(elapsedSeconds);
             }
         }
     }

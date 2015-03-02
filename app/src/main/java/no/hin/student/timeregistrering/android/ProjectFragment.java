@@ -23,9 +23,10 @@ public class ProjectFragment extends Fragment
     private TextView projectLeader;
     private TextView clock;
     private Button startStopButton;
-    private int elapsedSeconds;
 
     private Project currentProject;
+
+    private boolean timeregistreringInProgress = false;
 
 
     @Override
@@ -57,24 +58,37 @@ public class ProjectFragment extends Fragment
             @Override
             public void onClick(View v)
             {
-                currentProject.startTimeregistrering();
-                elapsedSeconds = 0;
+                if (!timeregistreringInProgress)
+                {
+                    currentProject.startTimeregistrering();
+                    timeregistreringInProgress = true;
+                    startStopButton.setText("Stopp");
+                }
+                else
+                {
+                    currentProject.stopTimeregistrering();
+                    timeregistreringInProgress = false;
+                    startStopButton.setText("Start");
+                }
             }
         });
     }
 
     public void displayProject(Project project)
     {
-        currentProject = project;
-        projectName.setText(currentProject.getName());
-        projectCode.setText(currentProject.getCode());
-        projectLeader.setText(currentProject.getLeader());
-        projectStatus.setText(currentProject.getStatus());
+        if (!timeregistreringInProgress)
+        {
+            currentProject = project;
+            projectName.setText(currentProject.getName());
+            projectCode.setText(currentProject.getCode());
+            projectLeader.setText(currentProject.getLeader());
+            projectStatus.setText(currentProject.getStatus());
+        }
     }
 
-    public void onSecondsUpdate()
+    public void onSecondsUpdate(int elapsedSeconds)
     {
-        String tid = formatTime(++elapsedSeconds);
+        String tid = formatTime(elapsedSeconds);
         clock.setText(tid);
     }
 

@@ -115,8 +115,9 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
     }
 
     @Override
-    public void onSecondsUpdate()
+    public void onSecondsUpdate(int elapsedSeconds)
     {
+        updateSecondsIntent.putExtra("elapsedSeconds", elapsedSeconds);
         this.sendBroadcast(updateSecondsIntent);
     }
 }

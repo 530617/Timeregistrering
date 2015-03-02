@@ -30,6 +30,11 @@ public class Project
         timeregistrering.start();
     }
 
+    public void stopTimeregistrering()
+    {
+        timeregistrering.stop();
+    }
+
     public String getName()
     {
         return name;
