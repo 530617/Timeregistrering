@@ -6,9 +6,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 
 import java.util.ArrayList;
 
@@ -120,4 +123,12 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
         updateSecondsIntent.putExtra("elapsedSeconds", elapsedSeconds);
         this.sendBroadcast(updateSecondsIntent);
     }
+
+    public void showMenuMain(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.menu_main, popup.getMenu());
+        popup.show();
+    }
+
 }

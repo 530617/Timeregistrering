@@ -55,6 +55,8 @@ public class ListFragment extends Fragment implements LoaderManager.LoaderCallba
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+
         lvProjects = (ListView)getActivity().findViewById(R.id.lvProjects);
         lvProjects.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
