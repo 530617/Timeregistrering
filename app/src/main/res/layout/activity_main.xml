@@ -67,7 +67,7 @@
         android:layout_width="fill_parent"
         android:layout_height="180dp"
         android:background="#ffffff"
-        android:name="no.hin.student.timeregistrering.ListFragment"
+        android:name="no.hin.student.timeregistrering.android.ListFragment"
         android:id="@+id/fragment_list"
         android:padding="10dp"
         tools:layout="@layout/fragment_list" />
@@ -82,7 +82,7 @@
     <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="no.hin.student.timeregistrering.ProjectFragment"
+        android:name="no.hin.student.timeregistrering.android.ProjectFragment"
         android:id="@+id/fragment_project"
         android:padding="10dp"
         tools:layout="@layout/fragment_project"/>

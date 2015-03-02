@@ -1,4 +1,4 @@
-package no.hin.student.timeregistrering;
+package no.hin.student.timeregistrering.android;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;

@@ -11,7 +11,7 @@
     <fragment
         android:layout_width="250dp"
         android:layout_height="fill_parent"
-        android:name="no.hin.student.timeregistrering.ListFragment"
+        android:name="no.hin.student.timeregistrering.android.ListFragment"
         android:background="#ffffff"
         android:id="@+id/fragment_list"
         tools:layout="@layout/fragment_list" />

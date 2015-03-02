@@ -4,7 +4,7 @@
  *  Dette er klassefilen listefragmentet
  *  ********************************************************************************************/
 
-package no.hin.student.timeregistrering;
+package no.hin.student.timeregistrering.android;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -20,6 +20,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import no.hin.student.timeregistrering.android.ProjectDBTable;
+import no.hin.student.timeregistrering.R;
 
 
 public class ListFragment extends Fragment implements LoaderManager.LoaderCallbacks<Object> {

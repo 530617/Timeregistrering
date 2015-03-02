@@ -1,8 +1,10 @@
-package no.hin.student.timeregistrering;
+package no.hin.student.timeregistrering.android;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import no.hin.student.timeregistrering.android.ProjectDBTable;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "Projects.db";

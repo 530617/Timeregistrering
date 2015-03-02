@@ -1,11 +1,11 @@
-package no.hin.student.timeregistrering;
+package no.hin.student.timeregistrering.android;
 
-public class Project {
+public class Time {
     private long id;
     private String name;
     private String details;
 
-    public Project(String name, String details) {
+    public Time(String name, String details) {
         super();
         this.name = name;
         this.details = details;
