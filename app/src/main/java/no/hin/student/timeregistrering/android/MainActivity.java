@@ -124,6 +124,7 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
         this.sendBroadcast(updateSecondsIntent);
     }
 
+
     public void showMenuMain(View v) {
         PopupMenu popup = new PopupMenu(this, v);
         MenuInflater inflater = popup.getMenuInflater();
