@@ -6,29 +6,40 @@
 
 package no.hin.student.timeregistrering;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Loader;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class ListFragment extends Fragment implements LoaderManager.LoaderCallbacks<Object> {
     private final int LOADER_ID = 0;
     private ListView lvProjects;
+    private OnProjectClickListener projectClickListener;
+
+
+    interface OnProjectClickListener
+    {
+        public void onProjectClick(int index);
+    }
+
+    @Override
+    public void onAttach(Activity activity)
+    {
+        super.onAttach(activity);
+
+        projectClickListener = (OnProjectClickListener)activity;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
@@ -45,7 +56,8 @@ public class ListFragment extends Fragment implements LoaderManager.LoaderCallba
         lvProjects.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                addProject();
+                //addProject();
+                projectClickListener.onProjectClick(position);
             }
         });
     }

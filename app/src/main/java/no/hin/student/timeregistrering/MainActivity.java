@@ -10,7 +10,8 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements ListFragment.OnProjectClickListener
+{
     private ArrayList<Project> projects = new ArrayList<Project>();
 
     @Override
@@ -57,5 +58,12 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onProjectClick(int index)
+    {
+        ProjectFragment projectFragment = (ProjectFragment)getFragmentManager().findFragmentById(R.id.fragment_project);
+        projectFragment.displayProject(projects.get(index));
     }
 }
