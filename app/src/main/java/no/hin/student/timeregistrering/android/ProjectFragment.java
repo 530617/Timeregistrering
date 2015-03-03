@@ -98,6 +98,9 @@ public class ProjectFragment extends Fragment
             else
                 startStopButton.setClickable(true);
         }
+
+        // Reset timer view
+        clock.setText("00:00:00");
     }
 
     public void onSecondsUpdate(int elapsedSeconds)
