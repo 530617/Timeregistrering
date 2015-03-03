@@ -54,9 +54,9 @@ public class Timeregistrering
             int elapsedSeconds = 0;
             while (isRunning)
             {
-                tid.sleepMilliseconds(1000);
-                elapsedSeconds++;
                 timerListener.onSecondsUpdate(elapsedSeconds);
+                elapsedSeconds++;
+                tid.sleepMilliseconds(1000);
             }
         }
     }
