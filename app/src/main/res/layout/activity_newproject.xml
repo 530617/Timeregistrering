@@ -27,7 +27,7 @@
             <TableRow android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:text= "Innstillinger"
+                    android:text= "Nytt prosjekt"
                     android:textSize="25dp"
                     android:layout_weight="1"
                     android:textColor="#FFFFFF"
@@ -44,7 +44,7 @@
             <TableRow android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:text= "Innstillinger for applikasjonsdata"
+                    android:text= "Prosjekt detaljer om nytt prosjekt."
                     android:textSize="14dp"
                     android:layout_weight="1"
                     android:padding="5dp"
@@ -66,7 +66,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:text= "Under kan du endre datakilden til kommuneinformasjon.\n\nSkriv inn en korrekt URL adresse som peker på XML-data."
+            android:text= "Fyll ut all informasjon under for å opprette et nytt prosjekt."
             android:textSize="14sp"
             android:layout_weight="1"
             android:textColor="#000000"
@@ -74,7 +74,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="30dp"
             android:layout_span="2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -89,24 +89,101 @@
             android:layout_height="fill_parent">
             <TextView
                 android:text= "Prosjektnavn"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:textSize="16sp"
-                android:layout_width="100dp"
+                android:layout_width="110dp"
                 android:layout_height="fill_parent"
                 android:textColor="#000000" />
             <EditText
                 android:layout_width="220dp"
                 android:layout_height="fill_parent"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="20dp"
                 android:textColor="#000000"
                 android:textSize="18sp"
-                android:id="@+id/test"
+                android:id="@+id/etProjectName"
                 android:text="" />
         </LinearLayout>
     </TableRow>
 
 
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+            <TextView
+                android:text= "Prosjektleder"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                android:layout_width="110dp"
+                android:layout_height="fill_parent"
+                android:textColor="#000000" />
+            <EditText
+                android:layout_width="220dp"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:id="@+id/etProjectLeader"
+                android:text="" />
+        </LinearLayout>
+    </TableRow>
+
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+            <TextView
+                android:text= "Prosjektstatus"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:textSize="16sp"
+                android:layout_width="110dp"
+                android:layout_height="fill_parent"
+                android:textColor="#000000" />
+
+            <Spinner
+                android:id="@+id/spinner1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:textColor="#000000"
+                android:entries="@array/project_status"
+                android:prompt="@string/project_prompt" />
+        </LinearLayout>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+            <Button
+                android:width="100dp"
+                android:onClick="btnCreateProject"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_span="2"
+                android:text="Opprett prosjekt"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </TableRow>
 
 </TableLayout>

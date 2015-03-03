@@ -8,4 +8,11 @@
     <string name="title_activity_main_activity2">MainActivity2Activity</string>
     <string name="title_activity_newproject">newproject</string>
 
+    <string name="project_prompt">Velg status på prosjekt</string>
+    <string-array name="project_status">
+        <item>Prospekt</item>
+        <item>Påbegynt</item>
+        <item>Ferdig</item>
+    </string-array>
+
 </resources>
