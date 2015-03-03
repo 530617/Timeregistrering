@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,7 +26,7 @@ import no.hin.student.timeregistrering.applikasjon.TimerListener;
 public class MainActivity extends Activity implements ListFragment.OnProjectClickListener, TimerListener
 {
     private ArrayList<Project> projects = new ArrayList<Project>();
-    ProjectFragment projectFragment;
+    private ProjectFragment projectFragment;
     private SecondsUpdateReceiver secondsUpdateReceiver;
     private IntentFilter secondsUpdateFilter;
     private Intent updateSecondsIntent;
@@ -34,11 +36,24 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        createDefaultProjects();
+        initializeListView();
+        initializeReceiver();
+
+        SQLiteDatabase database = new MyDatabaseHelper(this).getWritableDatabase();
+        Log.d("--------------------------------------------------", database.toString());
+    }
+
+    private void createDefaultProjects()
+    {
         projects.add(new Project("Implementasjon av ny HP StoreOnce lagringshylle","P1001", "Olav", Project.Status.NOT_STARTED, this, new SystemTid()));
         projects.add(new Project("Ny ITV løsning","P1002", "Leif", Project.Status.STARTED, this, new SystemTid()));
         projects.add(new Project("Utvidelse av Blade C7000 hylle","P1003", "Hjørdiss", Project.Status.NOT_STARTED, this, new SystemTid()));
         projects.add(new Project("Oppgradering til Citrix Xenapp 7.6 Enterprise","P1004", "Leif", Project.Status.FINISHED, this, new SystemTid()));
+    }
 
+    private void initializeListView()
+    {
         ListView lvProjects= (ListView)findViewById(R.id.lvProjects);
         ArrayList<String> myStringArray = new ArrayList<String>();
         ArrayAdapter<String> myAdapterInstance;
@@ -48,13 +63,14 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
             myAdapterInstance.add(project.getName());
         }
         lvProjects.setAdapter(myAdapterInstance);
+    }
 
-
+    private void initializeReceiver()
+    {
         secondsUpdateReceiver = new SecondsUpdateReceiver();
         secondsUpdateFilter = new IntentFilter(SecondsUpdateReceiver.UPDATE_SECONDS);
         updateSecondsIntent = new Intent(SecondsUpdateReceiver.UPDATE_SECONDS);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

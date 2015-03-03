@@ -21,7 +21,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import no.hin.student.timeregistrering.android.ProjectDBTable;
 import no.hin.student.timeregistrering.R;
 
 
