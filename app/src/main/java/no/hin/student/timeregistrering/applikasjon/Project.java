@@ -64,4 +64,9 @@ public class Project
     {
         this.status = status;
     }
+
+    public Timeregistrering getTimeregistrering()
+    {
+        return timeregistrering;
+    }
 }

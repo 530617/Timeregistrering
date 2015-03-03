@@ -10,6 +10,7 @@ public class Timeregistrering
 {
     private String timestampAtStart;
     private String timestampAtStop;
+    private int elapsedSeconds = 0;
     private boolean isRunning = false;
 
     private TimerListener timerListener;
@@ -25,7 +26,7 @@ public class Timeregistrering
     {
         isRunning = true;
 
-        timestampAtStart = getTimeStamp();
+        timestampAtStart = getTimestamp();
 
         Thread timeThread = new Thread(new RunnableTimeregistrering());
         timeThread.start();
@@ -35,10 +36,10 @@ public class Timeregistrering
     {
         isRunning = false;
 
-        timestampAtStop = getTimeStamp();
+        timestampAtStop = getTimestamp();
     }
 
-    private String getTimeStamp()
+    private String getTimestamp()
     {
         DateFormat dateFormat = DateFormat.getDateTimeInstance();
         Date date = new Date();
@@ -46,12 +47,26 @@ public class Timeregistrering
         return dateFormat.format(date);
     }
 
+    public String getTimestampAtStart()
+    {
+        return timestampAtStart;
+    }
+
+    public String getTimestampAtStop()
+    {
+        return timestampAtStop;
+    }
+
+    public int getElapsedSeconds()
+    {
+        return elapsedSeconds;
+    }
+
     private class RunnableTimeregistrering implements Runnable
     {
         @Override
         public void run()
         {
-            int elapsedSeconds = 0;
             while (isRunning)
             {
                 timerListener.onSecondsUpdate(elapsedSeconds);
