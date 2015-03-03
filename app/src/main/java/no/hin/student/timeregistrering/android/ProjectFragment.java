@@ -61,6 +61,8 @@ public class ProjectFragment extends Fragment
                 if (!timeregistreringInProgress)
                 {
                     currentProject.startTimeregistrering();
+                    currentProject.setStatus(Project.Status.STARTED);
+                    projectStatus.setText(currentProject.getStatus());
                     timeregistreringInProgress = true;
                     startStopButton.setText("Stopp");
                 }
@@ -69,6 +71,7 @@ public class ProjectFragment extends Fragment
                     currentProject.stopTimeregistrering();
                     timeregistreringInProgress = false;
                     startStopButton.setText("Start");
+                    // SAVE TIMEREGISTRERING TO DATABASE
                 }
             }
         });
@@ -83,6 +86,11 @@ public class ProjectFragment extends Fragment
             projectCode.setText(currentProject.getCode());
             projectLeader.setText(currentProject.getLeader());
             projectStatus.setText(currentProject.getStatus());
+
+            if (currentProject.getStatus().equals("Ferdig"))
+                startStopButton.setClickable(false);
+            else
+                startStopButton.setClickable(true);
         }
     }
 

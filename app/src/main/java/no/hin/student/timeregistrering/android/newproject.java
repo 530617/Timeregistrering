@@ -1,9 +1,11 @@
-package no.hin.student.timeregistrering;
+package no.hin.student.timeregistrering.android;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import no.hin.student.timeregistrering.R;
 
 
 public class newproject extends Activity {

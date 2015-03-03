@@ -59,4 +59,9 @@ public class Project
         else
             return "Ferdig";
     }
+
+    public void setStatus(Status status)
+    {
+        this.status = status;
+    }
 }
