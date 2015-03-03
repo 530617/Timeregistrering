@@ -12,8 +12,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -25,7 +28,7 @@ import no.hin.student.timeregistrering.applikasjon.TimerListener;
 
 public class MainActivity extends Activity implements ListFragment.OnProjectClickListener, TimerListener
 {
-    private ArrayList<Project> projects = new ArrayList<Project>();
+
     private ProjectFragment projectFragment;
     private SecondsUpdateReceiver secondsUpdateReceiver;
     private IntentFilter secondsUpdateFilter;
@@ -46,10 +49,11 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
 
     private void createDefaultProjects()
     {
-        projects.add(new Project("Implementasjon av ny HP StoreOnce lagringshylle","P1001", "Olav", Project.Status.NOT_STARTED, this, new SystemTid()));
-        projects.add(new Project("Ny ITV løsning","P1002", "Leif", Project.Status.STARTED, this, new SystemTid()));
-        projects.add(new Project("Utvidelse av Blade C7000 hylle","P1003", "Hjørdiss", Project.Status.NOT_STARTED, this, new SystemTid()));
-        projects.add(new Project("Oppgradering til Citrix Xenapp 7.6 Enterprise","P1004", "Leif", Project.Status.FINISHED, this, new SystemTid()));
+        Projects.addProject(new Project("Implementasjon av ny HP StoreOnce lagringshylle","P1001", "Olav", Project.Status.NOT_STARTED, this, new SystemTid()));
+        Projects.addProject(new Project("Implementasjon av ny HP StoreOnce lagringshylle","P1001", "Olav", Project.Status.NOT_STARTED, this, new SystemTid()));
+        Projects.addProject(new Project("Ny ITV løsning","P1002", "Leif", Project.Status.STARTED, this, new SystemTid()));
+        Projects.addProject(new Project("Utvidelse av Blade C7000 hylle","P1003", "Hjørdiss", Project.Status.NOT_STARTED, this, new SystemTid()));
+        Projects.addProject(new Project("Oppgradering til Citrix Xenapp 7.6 Enterprise","P1004", "Leif", Project.Status.FINISHED, this, new SystemTid()));
     }
 
     private void initializeListView()
@@ -59,7 +63,7 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
         ArrayAdapter<String> myAdapterInstance;
         int layoutID = android.R.layout.simple_list_item_1;
         myAdapterInstance = new ArrayAdapter<String>(this, layoutID, myStringArray);
-        for (Project project : projects ) {
+        for (Project project : Projects.getAllProjects() ) {
             myAdapterInstance.add(project.getName());
         }
         lvProjects.setAdapter(myAdapterInstance);
@@ -106,7 +110,7 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
         super.onStart();
 
         getFragmentReferences();
-        projectFragment.displayProject(projects.get(0)); // Sett default prosjekt i project-fragment
+        projectFragment.displayProject(Projects.getAllProjects().get(0)); // Sett default prosjekt i project-fragment
     }
 
     @Override
@@ -128,14 +132,13 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
     private void getFragmentReferences()
     {
         FragmentManager manager = getFragmentManager();
-
         projectFragment = (ProjectFragment)manager.findFragmentById(R.id.fragment_project);
     }
 
     @Override
     public void onProjectClick(int index)
     {
-        projectFragment.displayProject(projects.get(index));
+        projectFragment.displayProject(Projects.getAllProjects().get(index));
     }
 
     @Override
@@ -144,6 +147,8 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
         updateSecondsIntent.putExtra("elapsedSeconds", elapsedSeconds);
         this.sendBroadcast(updateSecondsIntent);
     }
+
+
 
 
     public void showMenuMain(View v) {

@@ -2,7 +2,21 @@ package no.hin.student.timeregistrering.applikasjon;
 
 public class Project
 {
-    public enum Status {NOT_STARTED, STARTED, FINISHED};
+    public enum Status {
+        NOT_STARTED(0),
+        STARTED(1),
+        FINISHED(2);
+
+        private int type;
+
+        Status(int i) {
+            this.type = i;
+        }
+
+        public int getValue() {
+            return type;
+        }
+    };
 
     private Status status = Status.NOT_STARTED;
     private String name;

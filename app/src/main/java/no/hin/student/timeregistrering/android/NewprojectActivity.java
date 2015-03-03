@@ -2,10 +2,16 @@ package no.hin.student.timeregistrering.android;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 import no.hin.student.timeregistrering.R;
+import no.hin.student.timeregistrering.applikasjon.Project;
+import no.hin.student.timeregistrering.applikasjon.SystemTid;
 
 
 public class NewprojectActivity extends Activity {
@@ -17,7 +23,15 @@ public class NewprojectActivity extends Activity {
     }
 
 
+    public void btnCreateProject(View view) {
+        String projectName = ((EditText) findViewById(R.id.etProjectName)).getText().toString();
+        String projectLeader = ((EditText) findViewById(R.id.etProjectLeader)).getText().toString();
+        String projectStatus = ((Spinner) findViewById(R.id.spProjectStatus)).getSelectedItem().toString();
 
+        Log.d(projectStatus+"aasasasassa",projectStatus+"aasasasassa");
+
+        //Projects.addProject(new Project("Implementasjon av ny HP StoreOnce lagringshylle", "P1001", "Olav", Project.Status.NOT_STARTED, new SystemTid()));
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
