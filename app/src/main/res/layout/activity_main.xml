@@ -42,6 +42,7 @@
                         android:layout_height="wrap_content" />
                     <Button
                         android:text="..."
+                        style="@style/btnHamburgerMenu"
                         android:onClick="showMenuMain"
                         />
                 </TableRow>
