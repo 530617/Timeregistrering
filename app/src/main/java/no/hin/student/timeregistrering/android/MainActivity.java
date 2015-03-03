@@ -61,7 +61,6 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-
     }
 
     @Override
@@ -72,6 +71,12 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        if (id == R.id.action_newproject) {
+            startActivity(new Intent(MainActivity.this, NewprojectActivity.class));
+        }
+        if (id == R.id.action_report) {
+            return true;
+        }
         if (id == R.id.action_settings) {
             return true;
         }

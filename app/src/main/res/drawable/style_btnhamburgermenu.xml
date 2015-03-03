@@ -5,10 +5,10 @@
             android:thickness="2dp"
             >
             <solid
-                android:color="#FFFFFF" />
+                android:color="#ffdddddd" />
             <stroke
                 android:width="2dp"
-                android:color="#FFFFFF" />
+                android:color="#ffdddddd" />
             <corners
                 android:radius="7dp" />
             <padding

@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import no.hin.student.timeregistrering.R;
 
 
-public class newproject extends Activity {
+public class NewprojectActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,12 +17,7 @@ public class newproject extends Activity {
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_newproject, menu);
-        return true;
-    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
