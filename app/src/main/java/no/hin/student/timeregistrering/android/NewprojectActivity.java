@@ -1,7 +1,7 @@
 package no.hin.student.timeregistrering.android;
 
 import android.app.Activity;
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -11,9 +11,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import no.hin.student.timeregistrering.R;
-import no.hin.student.timeregistrering.applikasjon.Project;
-import no.hin.student.timeregistrering.applikasjon.Projects;
-import no.hin.student.timeregistrering.applikasjon.SystemTid;
 
 
 public class NewprojectActivity extends Activity {
@@ -29,19 +26,26 @@ public class NewprojectActivity extends Activity {
         try {
             String projectName = ((EditText) findViewById(R.id.etProjectName)).getText().toString();
             String projectLeader = ((EditText) findViewById(R.id.etProjectLeader)).getText().toString();
-            String projectStatus = ((Spinner) findViewById(R.id.spProjectStatus)).getSelectedItem().toString();
+            int projectStatus = ((Spinner) findViewById(R.id.spProjectStatus)).getSelectedItemPosition();
 
 
-            Log.d("Project status:", projectStatus);
+            Log.d("Project status:", "" + projectStatus);
 
             if (projectName.equals("") || projectLeader.equals("")) {
                 Toast toast = Toast.makeText(getApplicationContext(), "Vennligst fyll ut alle felter før du forsøker å opprette prosjektet.", Toast.LENGTH_SHORT);
                 toast.show();
             } else {
-                //Projects.addProject(new Project("Implementasjon av ny HP StoreOnce lagringshylle", "P1001", "Olav", Project.Status.NOT_STARTED, new SystemTid()));
+                Intent projectIntent = new Intent();
+                projectIntent.putExtra("projectName", projectName);
+                projectIntent.putExtra("projectCode", "code");
+                projectIntent.putExtra("projectLeader", projectLeader);
+                projectIntent.putExtra("projectStatus", projectStatus);
+
+                setResult(Activity.RESULT_OK, projectIntent);
+                finish();
             }
         } finally {
-            finish();
+
         }
     }
 

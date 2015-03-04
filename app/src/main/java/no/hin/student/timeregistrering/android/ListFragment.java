@@ -56,34 +56,10 @@ public class ListFragment extends Fragment implements LoaderManager.LoaderCallba
         lvProjects.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //addProject();
                 projectClickListener.onProjectClick(position);
             }
         });
     }
-
-
-    /*public void addProject() {
-        String name = "Test Prosjekt";
-
-        //Bruker ContentResolver direkte:
-        ContentResolver cr = getActivity().getContentResolver();
-        ContentValues values = new ContentValues();
-        values.put(ProjectDBTable.PROJECT_COL_NAME, name);
-        values.put(ProjectDBTable.PROJECT_COL_DETAILS, "Detaljer");
-        values.put(ProjectDBTable.PROJECT_COL_RATE, "270");
-
-        //Bruker insert() metoden til ContentProvideren:
-        Uri myRowUri = cr.insert(ProjectContentProvider.CONTENT_URI, values);
-
-        Toast.makeText(this.getActivity(), "Ny prosjekt lagt til...", Toast.LENGTH_SHORT).show();
-
-
-        //NB!! Bruk restartLoader(...), trigger onCreateLoader():
-        getLoaderManager().restartLoader(LOADER_ID, null, this);
-    }*/
-
-
 
     @Override
     public Loader<Object> onCreateLoader(int id, Bundle args) {

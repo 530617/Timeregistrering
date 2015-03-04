@@ -30,19 +30,23 @@ import no.hin.student.timeregistrering.applikasjon.TimerListener;
 
 public class MainActivity extends Activity implements ListFragment.OnProjectClickListener, TimerListener
 {
+    private static final int NEW_PROJECT_ACTIVITY = 0;
 
     private ProjectFragment projectFragment;
     private SecondsUpdateReceiver secondsUpdateReceiver;
     private IntentFilter secondsUpdateFilter;
     private Intent updateSecondsIntent;
     private SQLiteDatabase database;
+    private Projects projects;
+    private ArrayAdapter<Project> myAdapterInstance;
+    private ListView lvProjects;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getResources().getString(R.string.project_notstarted);
-        createDefaultProjects();
+        projects = new Projects(this);
         initializeListView();
         initializeReceiver();
 
@@ -50,22 +54,14 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
         insertDefaultProjectsIntoDatabase();
     }
 
-    private void createDefaultProjects()
-    {
-        Projects.addProject(new Project("Implementasjon av ny HP StoreOnce lagringshylle", "P1001", "Olav", Project.Status.NOT_STARTED, this, new SystemTid()));
-        Projects.addProject(new Project("Ny ITV løsning", "P1002", "Leif", Project.Status.STARTED, this, new SystemTid()));
-        Projects.addProject(new Project("Utvidelse av Blade C7000 hylle", "P1003", "Hjørdiss", Project.Status.NOT_STARTED, this, new SystemTid()));
-        Projects.addProject(new Project("Oppgradering til Citrix Xenapp 7.6 Enterprise", "P1004", "Leif", Project.Status.FINISHED, this, new SystemTid()));
-    }
-
     private void initializeListView()
     {
-        ListView lvProjects= (ListView)findViewById(R.id.lvProjects);
+        lvProjects = (ListView)findViewById(R.id.lvProjects);
         ArrayList<Project> myProjectArray = new ArrayList<Project>();
-        ArrayAdapter<Project> myAdapterInstance;
+
         int layoutID = android.R.layout.simple_list_item_1;
         myAdapterInstance = new ArrayAdapter<Project>(this, layoutID, myProjectArray);
-        for (Project project : Projects.getAllProjects() ) {
+        for (Project project : projects.getAllProjects() ) {
             myAdapterInstance.add(project);
         }
         lvProjects.setAdapter(myAdapterInstance);
@@ -80,13 +76,15 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
 
     private void insertDefaultProjectsIntoDatabase()
     {
-        ArrayList<Project> projects = Projects.getAllProjects();
-        ContentValues newProjectEntry;
         long numberOfRows = DatabaseUtils.queryNumEntries(database, ProjectDBTable.PROJECT_TABLE);
         Log.d("-------------------------------------------------------", "rows: " + numberOfRows);
-        if (numberOfRows != 4) // If default projects already exist in db, don't add them
+        if (numberOfRows <= 4) // If default projects already exist in db, don't add them
         {
-            for (Project project: projects)
+            createDefaultProjects();
+            ArrayList<Project> projectList = projects.getAllProjects();
+            ContentValues newProjectEntry;
+
+            for (Project project: projectList)
             {
                 newProjectEntry = new ContentValues();
                 newProjectEntry.put(ProjectDBTable.PROJECT_COL_NAME, project.getName());
@@ -96,9 +94,19 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
 
                 database.insert(ProjectDBTable.PROJECT_TABLE, null, newProjectEntry);
             }
+            Log.d("-------------------------------------------------------", "inserting default projects");
         }
 
         Log.d("-------------------------------------------------------", "rows: " + DatabaseUtils.queryNumEntries(database, ProjectDBTable.PROJECT_TABLE));
+        database.close();
+    }
+
+    private void createDefaultProjects()
+    {
+        projects.addProject(new Project("Implementasjon av ny HP StoreOnce lagringshylle", "P1001", "Olav", Project.Status.NOT_STARTED, this, new SystemTid()));
+        projects.addProject(new Project("Ny ITV løsning", "P1002", "Leif", Project.Status.STARTED, this, new SystemTid()));
+        projects.addProject(new Project("Utvidelse av Blade C7000 hylle", "P1003", "Hjørdiss", Project.Status.NOT_STARTED, this, new SystemTid()));
+        projects.addProject(new Project("Oppgradering til Citrix Xenapp 7.6 Enterprise", "P1004", "Leif", Project.Status.FINISHED, this, new SystemTid()));
     }
 
     @Override
@@ -117,7 +125,8 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_newproject) {
-            startActivity(new Intent(MainActivity.this, NewprojectActivity.class));
+
+            startActivityForResult(new Intent(MainActivity.this, NewprojectActivity.class), NEW_PROJECT_ACTIVITY);
         }
         if (id == R.id.action_settings) {
             return true;
@@ -134,6 +143,24 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == NEW_PROJECT_ACTIVITY)
+        {
+            String name = data.getStringExtra("projectName");
+            String code = data.getStringExtra("projectCode");
+            String leader = data.getStringExtra("projectLeader");
+            int status = data.getIntExtra("projectStatus", 0);
+
+            projects.addProject(new Project(name, code, leader, Project.Status.NOT_STARTED, this, new SystemTid()));
+            //myAdapterInstance.notifyDataSetChanged(); <--- funka ikke
+            //lvProjects.invalidateViews(); <--- funka ikke
+        }
+    }
+
+    @Override
     public void onStart()
     {
         super.onStart();
@@ -142,7 +169,7 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         int storedPreference = preferences.getInt("LastSelectedProject", 0);
         try {
-            projectFragment.displayProject(Projects.getAllProjects().get(0)); // Sett default prosjekt i project-fragment
+            projectFragment.displayProject(projects.getAllProjects().get(0)); // Sett default prosjekt i project-fragment
         } finally {
 
         }
@@ -173,7 +200,7 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
     @Override
     public void onProjectClick(int index)
     {
-        projectFragment.displayProject(Projects.getAllProjects().get(index));
+        projectFragment.displayProject(projects.getAllProjects().get(index));
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = preferences.edit();
