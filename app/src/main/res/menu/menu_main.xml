@@ -5,9 +5,11 @@
         android:onClick="onOptionsItemSelected"
         android:orderInCategory="100" android:showAsAction="never" />
     <item
-    android:id="@+id/action_settings" android:title="@string/action_settings"
+    android:id="@+id/action_projecthours" android:title="@string/action_projecthours"
+    android:onClick="onOptionsItemSelected"
     android:orderInCategory="100" android:showAsAction="never" />
     <item
         android:id="@+id/action_exit" android:title="@string/action_exit"
+        android:onClick="onOptionsItemSelected"
         android:orderInCategory="100" android:showAsAction="never" />
 </menu>

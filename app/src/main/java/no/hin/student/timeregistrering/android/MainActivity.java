@@ -109,12 +109,6 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
         projects.addProject(new Project("Oppgradering til Citrix Xenapp 7.6 Enterprise", "P1004", "Leif", Project.Status.FINISHED, this, new SystemTid()));
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -128,7 +122,7 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
 
             startActivityForResult(new Intent(MainActivity.this, NewprojectActivity.class), NEW_PROJECT_ACTIVITY);
         }
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_projecthours) {
             return true;
         }
 
@@ -166,11 +160,12 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
     {
         super.onStart();
 
-        getFragmentReferences();
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        int storedPreference = preferences.getInt("LastSelectedProject", 0);
+        if (projects.countProjects() != 0)
         try {
-            projectFragment.displayProject(projects.getAllProjects().get(0)); // Sett default prosjekt i project-fragment
+            getFragmentReferences();
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            int storedPreference = preferences.getInt("LastSelectedProject", 0);
+            projectFragment.displayProject(projects.getAllProjects().get(storedPreference)); // Sett default prosjekt i project-fragment
         } finally {
 
         }
