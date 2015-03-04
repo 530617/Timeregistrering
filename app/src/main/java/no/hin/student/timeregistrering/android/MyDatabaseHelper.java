@@ -24,5 +24,5 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
         ProjectDBTable.onUpgrade(database, oldVersion, newVersion);
-}
+    }
 }
