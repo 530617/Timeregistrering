@@ -25,6 +25,7 @@ public class Project
         }
     };
 
+    private long id;
     private Status status = Status.NOT_STARTED;
     private String name;
     private String code;
@@ -69,6 +70,16 @@ public class Project
     public String getLeader()
     {
         return leader;
+    }
+
+    public long getId()
+    {
+        return id;
+    }
+
+    public void setId(long id)
+    {
+        this.id = id;
     }
 
     public String getStatus()

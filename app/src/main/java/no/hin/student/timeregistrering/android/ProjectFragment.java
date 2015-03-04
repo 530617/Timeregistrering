@@ -2,7 +2,10 @@ package no.hin.student.timeregistrering.android;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.ContentValues;
+import android.database.DatabaseUtils;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +14,7 @@ import android.widget.TextView;
 
 import no.hin.student.timeregistrering.R;
 import no.hin.student.timeregistrering.applikasjon.Project;
+import no.hin.student.timeregistrering.applikasjon.Timeregistrering;
 
 public class ProjectFragment extends Fragment
 {
@@ -23,9 +27,17 @@ public class ProjectFragment extends Fragment
 
     private Project currentProject;
     private TimeFormatter timeFormatter = new TimeFormatter();
+    private MainActivity mainActivity;
 
     private boolean timeregistreringInProgress = false;
 
+    @Override
+    public void onAttach(Activity activity)
+    {
+        super.onAttach(activity);
+
+        mainActivity = (MainActivity)activity;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
@@ -69,15 +81,27 @@ public class ProjectFragment extends Fragment
                     currentProject.stopTimeregistrering();
                     timeregistreringInProgress = false;
                     startStopButton.setText("Start");
-                    // SAVE TIMEREGISTRERING TO DATABASE
-                    /*Timeregistrering timeregistrering = currentProject.getTimeregistrering();
-                    String startTid = timeregistrering.getTimestampAtStart();
-                    String sluttTid = timeregistrering.getTimestampAtStop();
-                    int varighet = timeregistrering.getElapsedSeconds();
-                    String varighetString = timeFormatter.formatTime(varighet);*/
+                    saveTimeregistrering();
                 }
             }
         });
+    }
+
+    private void saveTimeregistrering()
+    {
+        database = new MyDatabaseHelper(mainActivity).getWritableDatabase();
+        Timeregistrering timereg = currentProject.getTimeregistrering();
+
+        ContentValues newProjectEntry;
+        newProjectEntry = new ContentValues();
+        newProjectEntry.put(ProjectDBTable.TIMEREG_COL_FROM, timereg.getTimestampAtStart());
+        newProjectEntry.put(ProjectDBTable.TIMEREG_COL_TO, timereg.getTimestampAtStop());
+        newProjectEntry.put(ProjectDBTable.TIMEREG_COL_DESCRIPTION, "placeholder text");
+        newProjectEntry.put(ProjectDBTable.TIMEREG_COL_PROJECT_ID, currentProject.getId());
+
+        database.insert(ProjectDBTable.PROJECT_TABLE, null, newProjectEntry);
+        Log.d("-------------------------------------------------------", "rows: " + DatabaseUtils.queryNumEntries(database, ProjectDBTable.PROJECT_TABLE));
+        database.close();
     }
 
     public void displayProject(Project project)

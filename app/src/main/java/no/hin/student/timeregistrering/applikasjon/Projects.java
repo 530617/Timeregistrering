@@ -73,6 +73,9 @@ public class Projects
 
         while (cursor.moveToNext())
         {
+            int idIndex = cursor.getColumnIndexOrThrow(ProjectDBTable.PROJECT_COL_ID);
+            int id = cursor.getInt(idIndex);
+
             int nameIndex = cursor.getColumnIndexOrThrow(ProjectDBTable.PROJECT_COL_NAME);
             String name = cursor.getString(nameIndex);
 
@@ -86,7 +89,9 @@ public class Projects
             int statusInt = cursor.getInt(statusIndex);
             Project.Status status = convertToStatus(statusInt); // We should really do this another way...
 
-            projects.add(new Project(name, code, leader, status, mainActivity, new SystemTid()));
+            Project project = new Project(name, code, leader, status, mainActivity, new SystemTid());
+            project.setId(id);
+            projects.add(project);
         }
 
         cursor.close();
