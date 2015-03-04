@@ -1,8 +1,7 @@
-package no.hin.student.timeregistrering.android;
+package no.hin.student.timeregistrering.applikasjon;
 
 import java.util.ArrayList;
 
-import no.hin.student.timeregistrering.applikasjon.Project;
 
 /**
  * Created by kurt-erik on 03.03.2015.

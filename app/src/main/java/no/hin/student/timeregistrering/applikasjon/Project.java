@@ -1,20 +1,27 @@
 package no.hin.student.timeregistrering.applikasjon;
 
+
 public class Project
 {
     public enum Status {
-        NOT_STARTED(0),
-        STARTED(1),
-        FINISHED(2);
+        NOT_STARTED(0, "Ikke startet"),
+        STARTED(1, "Startet"),
+        FINISHED(2, "Ferdig");
 
         private int type;
+        private String text;
 
-        Status(int i) {
+        Status(int i, String text) {
             this.type = i;
+            this.text = text;
         }
 
-        public int getValue() {
+        public int getId() {
             return type;
+        }
+
+        public String getText() {
+            return text;
         }
     };
 
@@ -66,12 +73,7 @@ public class Project
 
     public String getStatus()
     {
-        if (status == Status.NOT_STARTED)
-            return "Ikke startet";
-        else if (status == Status.STARTED)
-            return "Startet";
-        else
-            return "Ferdig";
+        return status.getText();
     }
 
     public void setStatus(Status status)
@@ -82,5 +84,10 @@ public class Project
     public Timeregistrering getTimeregistrering()
     {
         return timeregistrering;
+    }
+
+    @Override
+    public String toString() {
+        return this.getName();
     }
 }

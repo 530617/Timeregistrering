@@ -5,8 +5,15 @@
     <string name="action_newproject">Nytt prosjekt</string>
     <string name="action_report">Rapport</string>
     <string name="action_settings">Innstillinger</string>
-    <string name="title_activity_main_activity2">MainActivity2Activity</string>
     <string name="title_activity_newproject">newproject</string>
+
+
+    <string name="project_notstarted">Ikke startet</string>
+    <string name="project_started">Startet</string>
+    <string name="project_finished">Ferdig</string>
+
+
+
 
     <string name="project_prompt">Velg status på prosjekt</string>
     <string-array name="project_status">
