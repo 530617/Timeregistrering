@@ -155,6 +155,7 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
             int status = data.getIntExtra("projectStatus", 0);
 
             projects.addProject(new Project(name, code, leader, Project.Status.NOT_STARTED, this, new SystemTid()));
+            initializeListView();
             //myAdapterInstance.notifyDataSetChanged(); <--- funka ikke
             //lvProjects.invalidateViews(); <--- funka ikke
         }
