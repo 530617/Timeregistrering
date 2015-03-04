@@ -9,17 +9,13 @@ package no.hin.student.timeregistrering.android;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.LoaderManager;
-import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Loader;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import no.hin.student.timeregistrering.R;
 
@@ -67,7 +63,7 @@ public class ListFragment extends Fragment implements LoaderManager.LoaderCallba
     }
 
 
-    public void addProject() {
+    /*public void addProject() {
         String name = "Test Prosjekt";
 
         //Bruker ContentResolver direkte:
@@ -85,7 +81,7 @@ public class ListFragment extends Fragment implements LoaderManager.LoaderCallba
 
         //NB!! Bruk restartLoader(...), trigger onCreateLoader():
         getLoaderManager().restartLoader(LOADER_ID, null, this);
-    }
+    }*/
 
 
 

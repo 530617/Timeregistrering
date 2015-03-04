@@ -76,6 +76,11 @@ public class Project
         return status.getText();
     }
 
+    public int getStatusId()
+    {
+        return status.getId();
+    }
+
     public void setStatus(Status status)
     {
         this.status = status;

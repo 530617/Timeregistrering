@@ -1,11 +1,12 @@
 package no.hin.student.timeregistrering.android;
 
 import android.app.Activity;
-import android.app.Application;
 import android.app.FragmentManager;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -34,6 +35,7 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
     private SecondsUpdateReceiver secondsUpdateReceiver;
     private IntentFilter secondsUpdateFilter;
     private Intent updateSecondsIntent;
+    private SQLiteDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +46,8 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
         initializeListView();
         initializeReceiver();
 
-        SQLiteDatabase database = new MyDatabaseHelper(this).getWritableDatabase();
-        Log.d("--------------------------------------------------", database.toString());
+        database = new MyDatabaseHelper(this).getWritableDatabase();
+        insertDefaultProjectsIntoDatabase();
     }
 
     private void createDefaultProjects()
@@ -74,6 +76,29 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
         secondsUpdateReceiver = new SecondsUpdateReceiver();
         secondsUpdateFilter = new IntentFilter(SecondsUpdateReceiver.UPDATE_SECONDS);
         updateSecondsIntent = new Intent(SecondsUpdateReceiver.UPDATE_SECONDS);
+    }
+
+    private void insertDefaultProjectsIntoDatabase()
+    {
+        ArrayList<Project> projects = Projects.getAllProjects();
+        ContentValues newProjectEntry;
+        long numberOfRows = DatabaseUtils.queryNumEntries(database, ProjectDBTable.PROJECT_TABLE);
+        Log.d("-------------------------------------------------------", "rows: " + numberOfRows);
+        if (numberOfRows != 4) // If default projects already exist in db, don't add them
+        {
+            for (Project project: projects)
+            {
+                newProjectEntry = new ContentValues();
+                newProjectEntry.put(ProjectDBTable.PROJECT_COL_NAME, project.getName());
+                newProjectEntry.put(ProjectDBTable.PROJECT_COL_CODE, project.getCode());
+                newProjectEntry.put(ProjectDBTable.PROJECT_COL_LEADER, project.getLeader());
+                newProjectEntry.put(ProjectDBTable.PROJECT_COL_STATUS, project.getStatusId());
+
+                database.insert(ProjectDBTable.PROJECT_TABLE, null, newProjectEntry);
+            }
+        }
+
+        Log.d("-------------------------------------------------------", "rows: " + DatabaseUtils.queryNumEntries(database, ProjectDBTable.PROJECT_TABLE));
     }
 
     @Override
