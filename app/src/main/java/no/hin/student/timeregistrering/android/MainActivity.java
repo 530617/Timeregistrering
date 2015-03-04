@@ -48,7 +48,6 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
     private void createDefaultProjects()
     {
         Projects.addProject(new Project("Implementasjon av ny HP StoreOnce lagringshylle", "P1001", "Olav", Project.Status.NOT_STARTED, this, new SystemTid()));
-        Projects.addProject(new Project("Implementasjon av ny HP StoreOnce lagringshylle", "P1001", "Olav", Project.Status.NOT_STARTED, this, new SystemTid()));
         Projects.addProject(new Project("Ny ITV løsning", "P1002", "Leif", Project.Status.STARTED, this, new SystemTid()));
         Projects.addProject(new Project("Utvidelse av Blade C7000 hylle", "P1003", "Hjørdiss", Project.Status.NOT_STARTED, this, new SystemTid()));
         Projects.addProject(new Project("Oppgradering til Citrix Xenapp 7.6 Enterprise", "P1004", "Leif", Project.Status.FINISHED, this, new SystemTid()));
@@ -91,9 +90,6 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_newproject) {
             startActivity(new Intent(MainActivity.this, NewprojectActivity.class));
-        }
-        if (id == R.id.action_report) {
-            return true;
         }
         if (id == R.id.action_settings) {
             return true;

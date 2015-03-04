@@ -13,7 +13,7 @@ public class Projects {
         projects.add(project);
     }
 
-    public static Project getProject(String id) {
+    public static Project getProject(int id) {
         return null;
     }
 
