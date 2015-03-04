@@ -160,10 +160,11 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
     {
         super.onStart();
 
-        getFragmentReferences();
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        int storedPreference = preferences.getInt("LastSelectedProject", 0);
+        if (projects.countProjects() != 0)
         try {
+            getFragmentReferences();
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            int storedPreference = preferences.getInt("LastSelectedProject", 0);
             projectFragment.displayProject(projects.getAllProjects().get(storedPreference)); // Sett default prosjekt i project-fragment
         } finally {
 

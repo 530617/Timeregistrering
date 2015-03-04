@@ -93,7 +93,9 @@ public class Projects
         database.close();
     }
 
-   
+   public int countProjects() {
+       return this.projects.size();
+   }
 
     private Project.Status convertToStatus(int status)
     {
