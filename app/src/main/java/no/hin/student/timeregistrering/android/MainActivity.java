@@ -109,12 +109,6 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
         projects.addProject(new Project("Oppgradering til Citrix Xenapp 7.6 Enterprise", "P1004", "Leif", Project.Status.FINISHED, this, new SystemTid()));
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -170,7 +164,7 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         int storedPreference = preferences.getInt("LastSelectedProject", 0);
         try {
-            projectFragment.displayProject(projects.getAllProjects().get(0)); // Sett default prosjekt i project-fragment
+            projectFragment.displayProject(projects.getAllProjects().get(storedPreference)); // Sett default prosjekt i project-fragment
         } finally {
 
         }

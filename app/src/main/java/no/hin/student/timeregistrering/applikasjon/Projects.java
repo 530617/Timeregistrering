@@ -93,6 +93,8 @@ public class Projects
         database.close();
     }
 
+   
+
     private Project.Status convertToStatus(int status)
     {
         if (status == 0)
