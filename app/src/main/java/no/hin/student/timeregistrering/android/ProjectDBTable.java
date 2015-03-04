@@ -9,16 +9,18 @@ public class ProjectDBTable {
     public static final String PROJECT_TABLE = "ProjectTable";
     public static final String PROJECT_COL_ID = "_id";
     public static final String PROJECT_COL_NAME = "name";
-    public static final String PROJECT_COL_DETAILS = "details";
-    public static final String PROJECT_COL_RATE = "";
+    public static final String PROJECT_COL_CODE = "code";
+    public static final String PROJECT_COL_LEADER = "leader";
+    public static final String PROJECT_COL_STATUS = "status";
 
 
     private static final String PROJECT_TABLE_CREATE = "create table "
             + PROJECT_TABLE
             + " (" + PROJECT_COL_ID + " integer primary key autoincrement, "
             + PROJECT_COL_NAME + " text not null, "
-            + PROJECT_COL_DETAILS + " text, "
-            + PROJECT_COL_RATE + " text" + ");";
+            + PROJECT_COL_CODE + " text not null, "
+            + PROJECT_COL_LEADER + " text not null, "
+            + PROJECT_COL_STATUS + " integer not null" + ");";
 
     public static void onCreate(SQLiteDatabase database) {
         database.execSQL(PROJECT_TABLE_CREATE);
