@@ -1,11 +1,14 @@
 package no.hin.student.timeregistrering.android;
 
 import android.app.Activity;
+import android.app.Application;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -95,6 +98,13 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
             return true;
         }
 
+        if (id == R.id.action_exit) {
+            Intent startMain = new Intent(Intent.ACTION_MAIN);
+            startMain.addCategory(Intent.CATEGORY_HOME);
+            startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(startMain);
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -104,7 +114,13 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
         super.onStart();
 
         getFragmentReferences();
-        projectFragment.displayProject(Projects.getAllProjects().get(0)); // Sett default prosjekt i project-fragment
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        int storedPreference = preferences.getInt("LastSelectedProject", 0);
+        try {
+            projectFragment.displayProject(Projects.getAllProjects().get(0)); // Sett default prosjekt i project-fragment
+        } finally {
+
+        }
     }
 
     @Override
@@ -133,6 +149,11 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
     public void onProjectClick(int index)
     {
         projectFragment.displayProject(Projects.getAllProjects().get(index));
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("LastSelectedProject", index);
+        editor.commit();
     }
 
     @Override

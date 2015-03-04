@@ -35,17 +35,13 @@ public class NewprojectActivity extends Activity {
             Log.d("Project status:", projectStatus);
 
             if (projectName.equals("") || projectLeader.equals("")) {
-                //Projects.addProject(new Project("Implementasjon av ny HP StoreOnce lagringshylle", "P1001", "Olav", Project.Status.NOT_STARTED, new SystemTid()));
-            } else {
-                Context context = getApplicationContext();
-                CharSequence text = "Vennligst fyll ut alle felter før du forsøker å opprette prosjektet.";
-                int duration = Toast.LENGTH_SHORT;
-                Toast toast = Toast.makeText(context, text, duration);
+                Toast toast = Toast.makeText(getApplicationContext(), "Vennligst fyll ut alle felter før du forsøker å opprette prosjektet.", Toast.LENGTH_SHORT);
                 toast.show();
+            } else {
+                //Projects.addProject(new Project("Implementasjon av ny HP StoreOnce lagringshylle", "P1001", "Olav", Project.Status.NOT_STARTED, new SystemTid()));
             }
         } finally {
-
-
+            finish();
         }
     }
 
