@@ -24,6 +24,10 @@
         <item>Påbegynt</item>
         <item>Ferdig</item>
     </string-array>
+    <string name="title_activity_projecthours">projecthours</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 
 
 </resources>
