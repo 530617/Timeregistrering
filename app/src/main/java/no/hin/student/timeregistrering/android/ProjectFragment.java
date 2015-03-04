@@ -12,9 +12,6 @@ import android.widget.TextView;
 import no.hin.student.timeregistrering.R;
 import no.hin.student.timeregistrering.applikasjon.Project;
 
-/**
- * Created by Aleksander on 02.03.2015.
- */
 public class ProjectFragment extends Fragment
 {
     private TextView projectName;

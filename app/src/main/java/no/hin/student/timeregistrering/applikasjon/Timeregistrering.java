@@ -3,9 +3,6 @@ package no.hin.student.timeregistrering.applikasjon;
 import java.text.DateFormat;
 import java.util.Date;
 
-/**
- * Created by Aleksander on 02.03.2015.
- */
 public class Timeregistrering
 {
     private String timestampAtStart;

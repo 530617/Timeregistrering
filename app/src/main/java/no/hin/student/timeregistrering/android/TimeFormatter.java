@@ -1,8 +1,5 @@
 package no.hin.student.timeregistrering.android;
 
-/**
- * Created by Aleksander on 03.03.2015.
- */
 public class TimeFormatter
 {
     public String formatTime(int elapsedSeconds)

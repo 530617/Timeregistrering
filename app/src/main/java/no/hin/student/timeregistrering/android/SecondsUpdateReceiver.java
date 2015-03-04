@@ -7,9 +7,6 @@ import android.content.Intent;
 
 import no.hin.student.timeregistrering.R;
 
-/**
- * Created by Aleksander on 02.03.2015.
- */
 public class SecondsUpdateReceiver extends BroadcastReceiver
 {
     public final static String UPDATE_SECONDS = "no.hin.student.timeregistrering.UPDATE_SECONDS";
