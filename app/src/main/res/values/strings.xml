@@ -6,7 +6,7 @@
 
     <string name="action_newproject">Nytt prosjekt</string>
     <string name="action_report">Rapport</string>
-    <string name="action_settings">Innstillinger</string>
+    <string name="action_projecthours">Timeliste for prosjekt</string>
     <string name="action_exit">Avslutt</string>
 
 

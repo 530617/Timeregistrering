@@ -128,7 +128,7 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
 
             startActivityForResult(new Intent(MainActivity.this, NewprojectActivity.class), NEW_PROJECT_ACTIVITY);
         }
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_projecthours) {
             return true;
         }
 
