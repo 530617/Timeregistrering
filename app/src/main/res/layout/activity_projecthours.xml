@@ -1,0 +1,93 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1"
+    android:layout_alignParentLeft="true"
+    android:background="#FFFFFF"
+    tools:context="net.nssoftware.kommuneinfo.Settings">
+
+
+
+    <TableRow
+        android:layout_height="100dp"
+        android:background="#c30080b8"
+        android:layout_width="fill_parent">
+
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            tools:context=".MainActivity">
+
+            <TableRow android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text= "Timeregistreringer"
+                    android:textSize="25dp"
+                    android:layout_weight="1"
+                    android:textColor="#FFFFFF"
+                    android:gravity="left"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="0dp"
+                    android:padding="5dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_span="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </TableRow>
+            <TableRow android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text= "I listen nedenfor ser du alle registrerte timer for valgt prosjekt."
+                    android:textSize="14dp"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:textColor="#FFFFFF"
+                    android:gravity="left"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_span="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+            </TableRow>
+
+
+        </TableLayout>
+    </TableRow>
+    <TableRow android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text= "Prosjekt"
+            android:id="@+id/tvProjectName"
+            android:textSize="28sp"
+            android:layout_weight="1"
+            android:textColor="#000000"
+            android:gravity="left"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:layout_span="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </TableRow>
+    <TableRow>
+        <ListView
+            android:id="@+id/lvProjectsHour"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
+    </TableRow>
+
+</TableLayout>

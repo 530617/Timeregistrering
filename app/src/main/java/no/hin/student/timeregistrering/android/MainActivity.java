@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -123,7 +124,16 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
             startActivityForResult(new Intent(MainActivity.this, NewprojectActivity.class), NEW_PROJECT_ACTIVITY);
         }
         if (id == R.id.action_projecthours) {
-            return true;
+            if (projects.countProjects() != 0){
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                int storedPreference = preferences.getInt("LastSelectedProject", 0);
+                Intent myIntent = new Intent(getBaseContext(), ProjecthoursActivity.class);
+                myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                String projectName = projects.getProject(storedPreference).getName();
+                startActivity(myIntent);
+                //TextView tvProjectName = (TextView)findViewById(R.id.tvProjectName);
+                //tvProjectName.setText(projectName);
+            }
         }
 
         if (id == R.id.action_exit) {
@@ -168,7 +178,7 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
             projectFragment.displayProject(projects.getAllProjects().get(storedPreference)); // Sett default prosjekt i project-fragment
         } finally {
 
-        }
+    }
     }
 
     @Override
