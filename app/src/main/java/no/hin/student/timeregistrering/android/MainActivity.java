@@ -29,6 +29,8 @@ import no.hin.student.timeregistrering.applikasjon.TimerListener;
 
 public class MainActivity extends Activity implements ListFragment.OnProjectClickListener, TimerListener
 {
+    static final int NEW_PROJECT = 111;
+
     // Declare variabels
     private ProjectFragment projectFragment;
     private SecondsUpdateReceiver secondsUpdateReceiver;
@@ -115,7 +117,8 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
 
 
         if (id == R.id.action_newproject) {
-            startActivityForResult(new Intent(MainActivity.this, NewprojectActivity.class), RESULT_OK);
+            Log.d("test","test");
+            startActivityForResult(new Intent(MainActivity.this, NewprojectActivity.class), NEW_PROJECT);
         }
         if (id == R.id.action_projecthours) {
             // If projects exists then try to load activity for project hours
@@ -137,13 +140,12 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
+
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-
         // If results ok from new project activity, then read data and add a new project
-        if (requestCode == RESULT_OK)
+        if (resultCode == RESULT_OK)
         {
             String name = data.getStringExtra("projectName");
             String code = data.getStringExtra("projectCode");
