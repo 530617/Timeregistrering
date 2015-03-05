@@ -63,6 +63,7 @@ public class ProjectFragment extends Fragment
         projectLeader = (TextView)activity.findViewById(R.id.textViewProsjektleder);
         clock = (TextView)activity.findViewById(R.id.textViewTimeregKlokke);
 
+        // Set click listener on Start/Stop timerbutton for project
         startStopButton = (Button)activity.findViewById(R.id.buttonStartStop);
         startStopButton.setOnClickListener(new View.OnClickListener()
         {
@@ -88,6 +89,7 @@ public class ProjectFragment extends Fragment
         });
     }
 
+    // Method to record time entries and save them to the database
     private void saveTimeregistrering()
     {
         SQLiteDatabase database = new MyDatabaseHelper(mainActivity).getWritableDatabase();
@@ -105,6 +107,7 @@ public class ProjectFragment extends Fragment
         database.close();
     }
 
+    // Method to show project details
     public void displayProject(Project project)
     {
         if (!timeregistreringInProgress)

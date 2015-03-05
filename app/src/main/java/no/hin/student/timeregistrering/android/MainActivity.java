@@ -29,8 +29,7 @@ import no.hin.student.timeregistrering.applikasjon.TimerListener;
 
 public class MainActivity extends Activity implements ListFragment.OnProjectClickListener, TimerListener
 {
-    //private static final int NEW_PROJECT_ACTIVITY = 0;
-
+    // Declare variabels
     private ProjectFragment projectFragment;
     private SecondsUpdateReceiver secondsUpdateReceiver;
     private IntentFilter secondsUpdateFilter;
@@ -100,6 +99,7 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
         database.close();
     }
 
+    // Metode for å opprette default test prosjekter
     private void createDefaultProjects()
     {
         projects.addProject(new Project("Implementasjon av ny HP StoreOnce lagringshylle", "P1001", "Olav", Project.Status.NOT_STARTED, this, new SystemTid()));
@@ -111,29 +111,23 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+
         if (id == R.id.action_newproject) {
             startActivityForResult(new Intent(MainActivity.this, NewprojectActivity.class), RESULT_OK);
         }
         if (id == R.id.action_projecthours) {
+            // If projects exists then try to load activity for project hours
             if (projects.countProjects() != 0){
-                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                int storedPreference = preferences.getInt("LastSelectedProject", 0);
                 Intent myIntent = new Intent(getBaseContext(), ProjecthoursActivity.class);
                 myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                String projectName = projects.getProject(storedPreference).getName();
                 startActivity(myIntent);
-                //TextView tvProjectName = (TextView)findViewById(R.id.tvProjectName);
-                //tvProjectName.setText(projectName);
             }
         }
 
         if (id == R.id.action_exit) {
+            // Close the application by simulating home button push
             Intent startMain = new Intent(Intent.ACTION_MAIN);
             startMain.addCategory(Intent.CATEGORY_HOME);
             startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -148,6 +142,7 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
     {
         super.onActivityResult(requestCode, resultCode, data);
 
+        // If results ok from new project activity, then read data and add a new project
         if (requestCode == RESULT_OK)
         {
             String name = data.getStringExtra("projectName");
@@ -165,12 +160,13 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
     {
         super.onStart();
 
+        // Load last selected project
         if (projects.countProjects() != 0)
         try {
             getFragmentReferences();
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             int storedPreference = preferences.getInt("LastSelectedProject", 0);
-            projectFragment.displayProject(projects.getAllProjects().get(storedPreference)); // Sett default prosjekt i project-fragment
+            projectFragment.displayProject(projects.getAllProjects().get(storedPreference));
         } finally {
 
         }
@@ -201,6 +197,7 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
     @Override
     public void onProjectClick(int index)
     {
+        // Displays selected project and then saves it to LastSelectedProject preference setting
         projectFragment.displayProject(projects.getAllProjects().get(index));
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());

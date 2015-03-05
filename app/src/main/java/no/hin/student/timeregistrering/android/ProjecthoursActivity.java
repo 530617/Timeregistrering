@@ -44,6 +44,8 @@ public class ProjecthoursActivity extends Activity {
         lvProjectsHour.setAdapter(myAdapterInstance);
     }
 
+
+    // Fetch time entries by reading records from database and show them in projecthour listview
     private void fetchTimeregistreringerFromDatabase()
     {
         timeregistreringer.clear();
@@ -72,27 +74,5 @@ public class ProjecthoursActivity extends Activity {
 
         cursor.close();
         database.close();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_projecthours, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }

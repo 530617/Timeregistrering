@@ -12,13 +12,13 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    // Denne kalles ved opprettelse av databasen:
+
     @Override
     public void onCreate(SQLiteDatabase database) {
         ProjectDBTable.onCreate(database);
     }
 
-    // Denne kalles når databaseversjonsnummeret til databasen har endret seg:
+    // Method that is called when database version is updated
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
         ProjectDBTable.onUpgrade(database, oldVersion, newVersion);

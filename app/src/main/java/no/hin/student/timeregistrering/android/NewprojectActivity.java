@@ -29,8 +29,7 @@ public class NewprojectActivity extends Activity {
         int projectStatus = ((Spinner) findViewById(R.id.spProjectStatus)).getSelectedItemPosition();
 
 
-        Log.d("Project status:", "" + projectStatus);
-
+        // If all fields are filled out then return values to MainActivity for creating new project
         if (projectName.equals("") || projectCode.equals("") || projectLeader.equals("")) {
             Toast toast = Toast.makeText(getApplicationContext(), "Vennligst fyll ut alle felter før du forsøker å opprette prosjektet.", Toast.LENGTH_SHORT);
             toast.show();
