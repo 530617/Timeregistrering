@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -23,29 +22,25 @@ public class NewprojectActivity extends Activity {
 
 
     public void btnCreateProject(View view) {
-        try {
-            String projectName = ((EditText) findViewById(R.id.etProjectName)).getText().toString();
-            String projectLeader = ((EditText) findViewById(R.id.etProjectLeader)).getText().toString();
-            int projectStatus = ((Spinner) findViewById(R.id.spProjectStatus)).getSelectedItemPosition();
+        String projectName = ((EditText) findViewById(R.id.etProjectName)).getText().toString();
+        String projectLeader = ((EditText) findViewById(R.id.etProjectLeader)).getText().toString();
+        int projectStatus = ((Spinner) findViewById(R.id.spProjectStatus)).getSelectedItemPosition();
 
 
-            Log.d("Project status:", "" + projectStatus);
+        Log.d("Project status:", "" + projectStatus);
 
-            if (projectName.equals("") || projectLeader.equals("")) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Vennligst fyll ut alle felter før du forsøker å opprette prosjektet.", Toast.LENGTH_SHORT);
-                toast.show();
-            } else {
-                Intent projectIntent = new Intent();
-                projectIntent.putExtra("projectName", projectName);
-                projectIntent.putExtra("projectCode", "code");
-                projectIntent.putExtra("projectLeader", projectLeader);
-                projectIntent.putExtra("projectStatus", projectStatus);
+        if (projectName.equals("") || projectLeader.equals("")) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Vennligst fyll ut alle felter før du forsøker å opprette prosjektet.", Toast.LENGTH_SHORT);
+            toast.show();
+        } else {
+            Intent projectIntent = new Intent();
+            projectIntent.putExtra("projectName", projectName);
+            projectIntent.putExtra("projectCode", "code");
+            projectIntent.putExtra("projectLeader", projectLeader);
+            projectIntent.putExtra("projectStatus", projectStatus);
 
-                setResult(Activity.RESULT_OK, projectIntent);
-                finish();
-            }
-        } finally {
-
+            setResult(Activity.RESULT_OK, projectIntent);
+            finish();
         }
     }
 }

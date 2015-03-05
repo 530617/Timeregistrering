@@ -26,7 +26,7 @@ public class ProjectFragment extends Fragment
     private TextView clock;
     private Button startStopButton;
 
-    private Project currentProject;
+    public static Project currentProject;
     private TimeFormatter timeFormatter = new TimeFormatter();
     private MainActivity mainActivity;
 

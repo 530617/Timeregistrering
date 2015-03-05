@@ -11,14 +11,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.PopupMenu;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -160,8 +158,6 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
 
             projects.addProject(new Project(name, code, leader, Project.Status.NOT_STARTED, this, new SystemTid()));
             initializeListView();
-            //myAdapterInstance.notifyDataSetChanged(); <--- funka ikke
-            //lvProjects.invalidateViews(); <--- funka ikke
         }
     }
 
@@ -212,6 +208,11 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt("LastSelectedProject", index);
         editor.commit();
+    }
+
+    public void onClickVisTimeregistreringer(View v)
+    {
+        startActivity(new Intent(MainActivity.this, ProjecthoursActivity.class));
     }
 
     @Override

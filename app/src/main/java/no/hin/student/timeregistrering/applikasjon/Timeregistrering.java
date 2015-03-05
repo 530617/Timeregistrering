@@ -9,6 +9,7 @@ public class Timeregistrering
     private String timestampAtStop;
     private int elapsedSeconds = 0;
     private boolean isRunning = false;
+    private String description;
 
     private TimerListener timerListener;
     private Tid tid;
@@ -17,6 +18,13 @@ public class Timeregistrering
     {
         this.timerListener = timerListener;
         this.tid = tid;
+    }
+
+    public Timeregistrering(String started, String ended, String description)
+    {
+        timestampAtStart = started;
+        timestampAtStop = ended;
+        this.description = description;
     }
 
     public void start()
