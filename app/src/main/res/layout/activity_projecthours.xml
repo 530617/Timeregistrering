@@ -87,7 +87,9 @@
             android:layout_height="fill_parent"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="10.0sp"/>
     </TableRow>
 
 </TableLayout>

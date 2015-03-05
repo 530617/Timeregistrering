@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,8 @@ public class ProjecthoursActivity extends Activity {
         setContentView(R.layout.activity_projecthours);
 
         initializeListView();
+        TextView projectName = (TextView)findViewById(R.id.tvProjectName);
+        projectName.setText(ProjectFragment.currentProject.getName());
     }
 
     private void initializeListView()
@@ -43,7 +46,7 @@ public class ProjecthoursActivity extends Activity {
 
     private void fetchTimeregistreringerFromDatabase()
     {
-
+        timeregistreringer.clear();
         SQLiteDatabase database = new MyDatabaseHelper(this).getWritableDatabase();
 
         String[] result_columns = new String[] {ProjectDBTable.TIMEREG_COL_STARTED, ProjectDBTable.TIMEREG_COL_ENDED,

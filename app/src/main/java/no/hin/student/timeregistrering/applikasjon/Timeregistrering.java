@@ -5,11 +5,11 @@ import java.util.Date;
 
 public class Timeregistrering
 {
-    private String timestampAtStart;
-    private String timestampAtStop;
+    private String timestampAtStart = "";
+    private String timestampAtStop = "";
     private int elapsedSeconds = 0;
     private boolean isRunning = false;
-    private String description;
+    private String description = "";
 
     private TimerListener timerListener;
     private Tid tid;
@@ -79,5 +79,12 @@ public class Timeregistrering
                 tid.sleepMilliseconds(1000);
             }
         }
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Started: " + timestampAtStart + "\nEnded: " + timestampAtStop +
+                "\nDescription: " + description;
     }
 }
