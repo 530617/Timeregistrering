@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.ContentValues;
 import android.database.DatabaseUtils;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -89,18 +90,18 @@ public class ProjectFragment extends Fragment
 
     private void saveTimeregistrering()
     {
-        database = new MyDatabaseHelper(mainActivity).getWritableDatabase();
+        SQLiteDatabase database = new MyDatabaseHelper(mainActivity).getWritableDatabase();
         Timeregistrering timereg = currentProject.getTimeregistrering();
 
         ContentValues newProjectEntry;
         newProjectEntry = new ContentValues();
-        newProjectEntry.put(ProjectDBTable.TIMEREG_COL_FROM, timereg.getTimestampAtStart());
-        newProjectEntry.put(ProjectDBTable.TIMEREG_COL_TO, timereg.getTimestampAtStop());
+        newProjectEntry.put(ProjectDBTable.TIMEREG_COL_STARTED, timereg.getTimestampAtStart());
+        newProjectEntry.put(ProjectDBTable.TIMEREG_COL_ENDED, timereg.getTimestampAtStop());
         newProjectEntry.put(ProjectDBTable.TIMEREG_COL_DESCRIPTION, "placeholder text");
         newProjectEntry.put(ProjectDBTable.TIMEREG_COL_PROJECT_ID, currentProject.getId());
 
-        database.insert(ProjectDBTable.PROJECT_TABLE, null, newProjectEntry);
-        Log.d("-------------------------------------------------------", "rows: " + DatabaseUtils.queryNumEntries(database, ProjectDBTable.PROJECT_TABLE));
+        database.insert(ProjectDBTable.TIMEREG_TABLE, null, newProjectEntry);
+        Log.d("-------------------------------------------------------", "rows: " + DatabaseUtils.queryNumEntries(database, ProjectDBTable.TIMEREG_TABLE));
         database.close();
     }
 
