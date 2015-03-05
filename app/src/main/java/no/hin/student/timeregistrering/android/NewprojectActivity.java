@@ -21,21 +21,23 @@ public class NewprojectActivity extends Activity {
     }
 
 
+
     public void btnCreateProject(View view) {
         String projectName = ((EditText) findViewById(R.id.etProjectName)).getText().toString();
+        String projectCode = ((EditText) findViewById(R.id.etProjectCode)).getText().toString();
         String projectLeader = ((EditText) findViewById(R.id.etProjectLeader)).getText().toString();
         int projectStatus = ((Spinner) findViewById(R.id.spProjectStatus)).getSelectedItemPosition();
 
 
         Log.d("Project status:", "" + projectStatus);
 
-        if (projectName.equals("") || projectLeader.equals("")) {
+        if (projectName.equals("") || projectCode.equals("") || projectLeader.equals("")) {
             Toast toast = Toast.makeText(getApplicationContext(), "Vennligst fyll ut alle felter før du forsøker å opprette prosjektet.", Toast.LENGTH_SHORT);
             toast.show();
         } else {
             Intent projectIntent = new Intent();
             projectIntent.putExtra("projectName", projectName);
-            projectIntent.putExtra("projectCode", "code");
+            projectIntent.putExtra("projectCode", projectCode);
             projectIntent.putExtra("projectLeader", projectLeader);
             projectIntent.putExtra("projectStatus", projectStatus);
 

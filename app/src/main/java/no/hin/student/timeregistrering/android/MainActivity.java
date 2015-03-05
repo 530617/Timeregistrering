@@ -29,7 +29,7 @@ import no.hin.student.timeregistrering.applikasjon.TimerListener;
 
 public class MainActivity extends Activity implements ListFragment.OnProjectClickListener, TimerListener
 {
-    private static final int NEW_PROJECT_ACTIVITY = 0;
+    //private static final int NEW_PROJECT_ACTIVITY = 0;
 
     private ProjectFragment projectFragment;
     private SecondsUpdateReceiver secondsUpdateReceiver;
@@ -118,8 +118,7 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_newproject) {
-
-            startActivityForResult(new Intent(MainActivity.this, NewprojectActivity.class), NEW_PROJECT_ACTIVITY);
+            startActivityForResult(new Intent(MainActivity.this, NewprojectActivity.class), RESULT_OK);
         }
         if (id == R.id.action_projecthours) {
             if (projects.countProjects() != 0){
@@ -149,7 +148,7 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
     {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == NEW_PROJECT_ACTIVITY)
+        if (requestCode == RESULT_OK)
         {
             String name = data.getStringExtra("projectName");
             String code = data.getStringExtra("projectCode");
@@ -174,7 +173,7 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
             projectFragment.displayProject(projects.getAllProjects().get(storedPreference)); // Sett default prosjekt i project-fragment
         } finally {
 
-    }
+        }
     }
 
     @Override
@@ -210,10 +209,6 @@ public class MainActivity extends Activity implements ListFragment.OnProjectClic
         editor.commit();
     }
 
-    public void onClickVisTimeregistreringer(View v)
-    {
-        startActivity(new Intent(MainActivity.this, ProjecthoursActivity.class));
-    }
 
     @Override
     public void onSecondsUpdate(int elapsedSeconds)

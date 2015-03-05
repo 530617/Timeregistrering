@@ -85,21 +85,12 @@
         android:textSize="55sp"/>
 
     <Button
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
         android:text="Start"
         android:id="@+id/buttonStartStop"
         android:layout_alignTop="@+id/textViewTimeregKlokke"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="24dp"
         android:layout_marginTop="10dp"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Vis timereg"
-        android:id="@+id/buttonShowTimeregistreringer"
-        android:layout_alignEnd="@+id/buttonStartStop"
-        android:layout_alignTop="@+id/textViewProsjektlederLabel"
-        android:onClick="onClickVisTimeregistreringer"/>
 </RelativeLayout>
